@@ -13,7 +13,7 @@ jobs:
     name: foundation
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Foundation tests
         run: swift test --filter 'GadgetBuddyCoreTests.(parsesTechnoPromptAndMarksMissingKey|neverInventsMissingMusicalFacts|challengerAcceptsInterpreterOutput)'
 
@@ -21,7 +21,7 @@ jobs:
     name: ai-provider-contract
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: AI provider deterministic contract tests
         run: swift test --filter 'GadgetBuddyCoreTests.(aiInterpreter|openAIProvider|openAIConfiguration|asyncSandbox)'
 
@@ -29,7 +29,7 @@ jobs:
     name: ui-module
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Song Command UI model tests
         run: swift test --filter 'GadgetBuddyCoreTests.(liveSession|songCommandScreen)'
       - name: Build runnable macOS demo
@@ -39,7 +39,7 @@ jobs:
     name: test-lab-fast
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: FAST profile
         run: swift test --filter 'GadgetBuddyCoreTests.(fastProfile|sandboxScenario|sandboxReport|challengerIssue|interpreterAlways|challengerRejects|challengerRequires|challengerAcceptsDeclared|fixtureSets|normalFixture|sandboxRuns|sandboxFails|sandboxRecognizes)'
 
@@ -47,7 +47,7 @@ jobs:
     name: test-lab-challenge
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: CHALLENGE profile
         run: swift test --filter 'GadgetBuddyCoreTests.(challengeProfile|fastProfile|redTeam|chaos|sandboxScenario|sandboxReport|challengerIssue|interpreterAlways|challengerRejects|challengerRequires|challengerAcceptsDeclared|fixtureSets|normalFixture|sandboxRuns|sandboxFails|sandboxRecognizes)'
 
@@ -55,6 +55,6 @@ jobs:
     name: test-lab-full
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: FULL LAB
         run: swift test
