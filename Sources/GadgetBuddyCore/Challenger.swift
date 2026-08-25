@@ -1,6 +1,6 @@
 import Foundation
 
-public enum ChallengerIssue: Equatable, Sendable {
+public enum ChallengerIssue: Codable, Equatable, Sendable {
     case invalidBPM(Int)
     case invalidConfidence(Double)
     case missingFieldNotDeclared(String)

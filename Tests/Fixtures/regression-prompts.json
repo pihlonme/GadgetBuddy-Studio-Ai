@@ -1,0 +1,15 @@
+[
+  {
+    "id": "regression.techno-around-145",
+    "name": "Around tempo extraction remains stable",
+    "profile": "fast",
+    "input": "Create dark aggressive warehouse techno around 145 BPM, build slowly and explode after the break.",
+    "expected": {
+      "intent": "create_song",
+      "genre": "techno",
+      "bpm": 145,
+      "requiredMissingFields": ["key"],
+      "expectedToPass": true
+    }
+  }
+]
