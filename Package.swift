@@ -8,13 +8,17 @@ let package = Package(
         .iOS(.v16)
     ],
     products: [
-        .library(name: "GadgetBuddyCore", targets: ["GadgetBuddyCore"])
+        .library(name: "GadgetBuddyCore", targets: ["GadgetBuddyCore"]),
+        .library(name: "GadgetBuddyUI", targets: ["GadgetBuddyUI"]),
+        .executable(name: "GadgetBuddyDemo", targets: ["GadgetBuddyDemo"])
     ],
     targets: [
         .target(name: "GadgetBuddyCore"),
+        .target(name: "GadgetBuddyUI", dependencies: ["GadgetBuddyCore"]),
+        .executableTarget(name: "GadgetBuddyDemo", dependencies: ["GadgetBuddyUI"]),
         .testTarget(
             name: "GadgetBuddyCoreTests",
-            dependencies: ["GadgetBuddyCore"],
+            dependencies: ["GadgetBuddyCore", "GadgetBuddyUI"],
             path: "Tests",
             resources: [.copy("Fixtures")]
         )

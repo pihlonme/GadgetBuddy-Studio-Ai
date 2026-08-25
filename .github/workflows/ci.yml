@@ -22,6 +22,16 @@ jobs:
       - name: AI provider deterministic contract tests
         run: swift test --filter 'GadgetBuddyCoreTests.(aiInterpreter|openAIProvider|openAIConfiguration|asyncSandbox)'
 
+  ui-module:
+    name: ui-module
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Song Command UI model tests
+        run: swift test --filter 'GadgetBuddyCoreTests.(liveSession|songCommandScreen)'
+      - name: Build runnable macOS demo
+        run: swift build --product GadgetBuddyDemo
+
   test-lab-fast:
     name: test-lab-fast
     runs-on: macos-latest
