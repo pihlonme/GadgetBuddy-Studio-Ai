@@ -22,6 +22,22 @@ The interpreter does **not invent missing facts**. Missing core fields are expli
 - `confidence`
 - `missingFields`
 
+## AI Command Interpreter v0.2
+
+The AI path now sits behind the same domain contract:
+
+`input -> CommandInterpretationProviding -> OpenAI Responses / deterministic provider -> SongCommand -> Challenger`
+
+The production OpenAI adapter uses Responses API Structured Outputs with a strict JSON schema. The model extracts facts, but GadgetBuddy recomputes core `missingFields` and `confidence` locally before Challenger validation.
+
+The default OpenAI model is `gpt-5.6-luna` and can be overridden in configuration. API credentials are runtime configuration only; no key belongs in Git or deterministic CI.
+
+For provider-aware sandbox tests:
+
+`SandboxScenario -> AsyncVirtualSandbox -> provider -> SongCommand -> Challenger -> SandboxReport`
+
+See `docs/COMMAND_INTERPRETER_V0.2.md` for the contract and security boundary.
+
 ## Test Lab / Virtual Sandbox v0.1
 
 Every change is exercised through a deterministic, side-effect-free Swift sandbox before downstream integration:
@@ -43,6 +59,12 @@ Full suite:
 
 ```bash
 swift test
+```
+
+AI provider contract only:
+
+```bash
+swift test --filter 'GadgetBuddyCoreTests.(aiInterpreter|openAIProvider|openAIConfiguration|asyncSandbox)'
 ```
 
 Foundation only:
@@ -71,4 +93,4 @@ A failing test is treated as a useful signal: isolate it, reproduce it determini
 
 ## Next milestone
 
-Introduce an AI-backed interpreter behind the same stable `SongCommand` contract and exercise it through Test Lab before adding the first visual Song Command UI.
+Build the first visual Song Command screen on top of the stable interpreter/provider contract, then connect explicit runtime API credential configuration in the app layer.
