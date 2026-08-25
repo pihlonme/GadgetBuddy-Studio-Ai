@@ -2,6 +2,7 @@ import GadgetBuddyUI
 import SwiftUI
 
 @main
+@MainActor
 struct GadgetBuddyDemoApp: App {
     @StateObject private var model = SongCommandScreenModel()
 
