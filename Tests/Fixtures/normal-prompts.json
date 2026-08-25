@@ -1,0 +1,27 @@
+[
+  {
+    "id": "normal.techno.145.a-minor",
+    "name": "Techno with explicit tempo and key",
+    "profile": "fast",
+    "input": "Create techno at 145 BPM in A minor",
+    "expected": {
+      "intent": "create_song",
+      "genre": "techno",
+      "bpm": 145,
+      "key": "a minor",
+      "requiredMissingFields": [],
+      "expectedToPass": true
+    }
+  },
+  {
+    "id": "normal.dark.incomplete",
+    "name": "Dark idea with deliberate gaps",
+    "profile": "fast",
+    "input": "Make something dark",
+    "expected": {
+      "intent": "create_song",
+      "requiredMissingFields": ["genre", "bpm", "key"],
+      "expectedToPass": true
+    }
+  }
+]

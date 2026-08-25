@@ -1,0 +1,24 @@
+[
+  {
+    "id": "adversarial.empty",
+    "name": "Empty prompt",
+    "profile": "challenge",
+    "input": "",
+    "expected": {
+      "requiredMissingFields": ["intent", "genre", "bpm", "key"],
+      "expectedToPass": true
+    }
+  },
+  {
+    "id": "adversarial.extreme-bpm",
+    "name": "Extreme unsupported BPM",
+    "profile": "challenge",
+    "input": "Create techno at 999 BPM",
+    "expected": {
+      "intent": "create_song",
+      "genre": "techno",
+      "requiredMissingFields": ["bpm", "key"],
+      "expectedToPass": true
+    }
+  }
+]

@@ -6,9 +6,34 @@ on:
   pull_request:
 
 jobs:
-  test:
+  foundation:
+    name: foundation
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Test
+      - name: Foundation tests
+        run: swift test --filter 'GadgetBuddyCoreTests.(parsesTechnoPromptAndMarksMissingKey|neverInventsMissingMusicalFacts|challengerAcceptsInterpreterOutput)'
+
+  test-lab-fast:
+    name: test-lab-fast
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: FAST profile
+        run: swift test --filter 'GadgetBuddyCoreTests.(fastProfile|sandboxScenario|sandboxReport|challengerIssue|interpreterAlways|challengerRejects|challengerRequires|challengerAcceptsDeclared|fixtureSets|normalFixture|sandboxRuns|sandboxFails|sandboxRecognizes)'
+
+  test-lab-challenge:
+    name: test-lab-challenge
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: CHALLENGE profile
+        run: swift test --filter 'GadgetBuddyCoreTests.(challengeProfile|fastProfile|redTeam|chaos|sandboxScenario|sandboxReport|challengerIssue|interpreterAlways|challengerRejects|challengerRequires|challengerAcceptsDeclared|fixtureSets|normalFixture|sandboxRuns|sandboxFails|sandboxRecognizes)'
+
+  test-lab-full:
+    name: test-lab-full
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: FULL LAB
         run: swift test

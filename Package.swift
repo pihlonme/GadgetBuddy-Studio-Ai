@@ -12,6 +12,11 @@ let package = Package(
     ],
     targets: [
         .target(name: "GadgetBuddyCore"),
-        .testTarget(name: "GadgetBuddyCoreTests", dependencies: ["GadgetBuddyCore"])
+        .testTarget(
+            name: "GadgetBuddyCoreTests",
+            dependencies: ["GadgetBuddyCore"],
+            path: "Tests",
+            resources: [.copy("Fixtures")]
+        )
     ]
 )
