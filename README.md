@@ -2,8 +2,32 @@
 
 AI-assisted music workflow tooling for KORG Gadget 3.
 
-## Current milestone
+## Foundation v0.1
 
-**Foundation v0.1** — establish the Command Interpreter contract, a testable core implementation, Challenger tests, and CI.
+The first vertical slice is deliberately small:
 
-Development work is performed through feature branches and pull requests.
+`free text / transcript -> Command Interpreter -> SongCommand -> Challenger validation`
+
+The interpreter does **not invent missing facts**. Missing core fields are explicitly returned in `missingFields`.
+
+### Current SongCommand contract
+
+- `intent`
+- `genre`
+- `bpm`
+- `key`
+- `mood`
+- `structure`
+- `references`
+- `confidence`
+- `missingFields`
+
+## Run tests
+
+```bash
+swift test
+```
+
+## Next milestone
+
+Replace the deterministic v0.1 extraction layer with an AI-backed interpreter behind the same stable domain contract, then add the first visual Song Command UI.
