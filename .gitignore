@@ -1,3 +1,17 @@
 .build/
 .swiftpm/
 .DS_Store
+
+# Local environment and secret files
+.env
+.env.*
+!.env.example
+.envrc
+*.pem
+*.key
+*.p12
+*.pfx
+*.mobileprovision
+*.provisionprofile
+Secrets.xcconfig
+Local.xcconfig
