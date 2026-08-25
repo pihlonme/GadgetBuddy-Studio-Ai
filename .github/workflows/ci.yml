@@ -14,6 +14,14 @@ jobs:
       - name: Foundation tests
         run: swift test --filter 'GadgetBuddyCoreTests.(parsesTechnoPromptAndMarksMissingKey|neverInventsMissingMusicalFacts|challengerAcceptsInterpreterOutput)'
 
+  ai-provider-contract:
+    name: ai-provider-contract
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: AI provider deterministic contract tests
+        run: swift test --filter 'GadgetBuddyCoreTests.(aiInterpreter|openAIProvider|openAIConfiguration|asyncSandbox)'
+
   test-lab-fast:
     name: test-lab-fast
     runs-on: macos-latest
