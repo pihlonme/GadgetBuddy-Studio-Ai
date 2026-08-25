@@ -114,12 +114,21 @@ public struct SandboxReport: Codable, Equatable, Sendable {
 }
 ```
 
-`passed` is true only when:
+`passed` means **the observed behavior matches the scenario expectation**.
+
+The runner first computes `observedValid`:
 
 1. Challenger returns no issues.
-2. All contract-critical expectations match.
-3. Required missing fields are declared.
-4. `expectedToPass` agrees with the observed result.
+2. All contract-critical expected values match.
+3. Every `requiredMissingFields` entry is declared by the command.
+
+Then:
+
+```text
+passed = expectedToPass ? observedValid : !observedValid
+```
+
+This allows deliberate negative scenarios to pass the test suite when they fail for the expected reason. A negative scenario must still assert the relevant contract-critical values or Challenger condition so an unrelated failure cannot produce a false positive.
 
 To make reports Codable, `ChallengerIssue` must become `Codable` while preserving its existing equality and Sendable behavior.
 
@@ -221,8 +230,10 @@ A failing Test Lab check blocks merge by project policy. GitHub branch-protectio
 ## 10. Error and Failure Semantics
 
 - A malformed fixture fails the test suite; it is never silently skipped.
-- A Challenger issue is recorded in `challengerIssues` and causes the scenario to fail unless the scenario explicitly has `expectedToPass == false` and the contract expectation matches the intended negative case.
-- A mismatch between expected and observed contract-critical fields creates a warning and causes failure.
+- Challenger issues are always recorded in `challengerIssues`.
+- Positive scenarios (`expectedToPass == true`) require a clean Challenger result and matching expectations.
+- Negative scenarios (`expectedToPass == false`) pass only when the runner observes the explicitly expected invalid behavior; test code must assert the relevant issue or contract mismatch so unrelated failures are rejected.
+- A mismatch between expected and observed contract-critical fields creates a warning and makes `observedValid` false.
 - Empty/unknown prompts return structured commands with missing fields; they must not crash.
 - Sandbox internal programming errors fail tests normally rather than being converted into false-positive reports.
 
@@ -279,7 +290,7 @@ Test Lab / Virtual Sandbox v0.1 is complete when all of the following are true:
 4. Normal, adversarial, and regression fixture sets load successfully from source-controlled JSON.
 5. Empty, malformed musical intent, mixed-language, Unicode, and extreme-number inputs do not crash the sandbox.
 6. Unsupported musical facts are not invented.
-7. Contract expectation mismatches fail their scenario.
+7. Contract expectation mismatches fail positive scenarios and are correctly recognized in explicit negative scenarios.
 8. FAST, CHALLENGE, and FULL LAB test commands are available in CI.
 9. The feature PR is not merged until all GitHub Actions checks are green.
 
