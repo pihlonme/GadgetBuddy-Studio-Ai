@@ -87,6 +87,14 @@ swift test --filter 'GadgetBuddyCoreTests.(challengeProfile|fastProfile|redTeam|
 
 FULL LAB is the complete `swift test` suite.
 
+## Governance
+
+GadgetBuddy adopts the canonical **Pihlonme Koncern Governance v0.1**. See [`GOVERNANCE.md`](GOVERNANCE.md) for the public project-facing contract and seven-question Values Gate.
+
+The governance layer does not replace Test Lab or Challenger. Technical checks provide evidence; governance defines how the team handles truth, dissent, learning, safety, ownership and cross-project impact.
+
+**One team. Infinite possibilities. Evidence over ego. Learn from everything.**
+
 ## Development principle
 
 A failing test is treated as a useful signal: isolate it, reproduce it deterministically, fix the root cause, and retain the scenario as a regression case so the system learns from the failure.
