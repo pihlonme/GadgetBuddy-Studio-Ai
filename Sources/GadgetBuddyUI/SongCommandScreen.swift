@@ -1,6 +1,7 @@
 import GadgetBuddyCore
 import SwiftUI
 
+@MainActor
 public struct SongCommandScreen: View {
     @ObservedObject private var model: SongCommandScreenModel
 
