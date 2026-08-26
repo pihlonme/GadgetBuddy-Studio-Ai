@@ -13,7 +13,9 @@ jobs:
     name: foundation
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Foundation tests
         run: swift test --filter 'GadgetBuddyCoreTests.(parsesTechnoPromptAndMarksMissingKey|neverInventsMissingMusicalFacts|challengerAcceptsInterpreterOutput)'
 
@@ -21,7 +23,9 @@ jobs:
     name: ai-provider-contract
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: AI provider deterministic contract tests
         run: swift test --filter 'GadgetBuddyCoreTests.(aiInterpreter|openAIProvider|openAIConfiguration|asyncSandbox)'
 
@@ -29,7 +33,9 @@ jobs:
     name: ui-module
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Song Command UI model tests
         run: swift test --filter 'GadgetBuddyCoreTests.(liveSession|songCommandScreen)'
       - name: Build runnable macOS demo
@@ -39,7 +45,9 @@ jobs:
     name: test-lab-fast
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: FAST profile
         run: swift test --filter 'GadgetBuddyCoreTests.(fastProfile|sandboxScenario|sandboxReport|challengerIssue|interpreterAlways|challengerRejects|challengerRequires|challengerAcceptsDeclared|fixtureSets|normalFixture|sandboxRuns|sandboxFails|sandboxRecognizes)'
 
@@ -47,7 +55,9 @@ jobs:
     name: test-lab-challenge
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: CHALLENGE profile
         run: swift test --filter 'GadgetBuddyCoreTests.(challengeProfile|fastProfile|redTeam|chaos|sandboxScenario|sandboxReport|challengerIssue|interpreterAlways|challengerRejects|challengerRequires|challengerAcceptsDeclared|fixtureSets|normalFixture|sandboxRuns|sandboxFails|sandboxRecognizes)'
 
@@ -55,6 +65,8 @@ jobs:
     name: test-lab-full
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: FULL LAB
         run: swift test
