@@ -99,6 +99,12 @@ The governance layer does not replace Test Lab or Challenger. Technical checks p
 
 A failing test is treated as a useful signal: isolate it, reproduce it deterministically, fix the root cause, and retain the scenario as a regression case so the system learns from the failure.
 
+## Current product state
+
+Product Module v0.3 delivered the first visual Song Command Studio / live-session surface on top of the stable interpreter/provider and Test Lab contracts.
+
 ## Next milestone
 
-Build the first visual Song Command screen on top of the stable interpreter/provider contract, then connect explicit runtime API credential configuration in the app layer.
+The post-v0.3 sequence documented in [`docs/PRODUCT_MODULE_V0.3_EXECUTION_PLAN.md`](docs/PRODUCT_MODULE_V0.3_EXECUTION_PLAN.md) begins with Song Spec Generator, followed by Gadget Planner, MIDI Generator, Controller Mapper and KORG adapters.
+
+The next active implementation milestone must be selected and specified explicitly before work begins; this README does not promote that sequence into an unreviewed commitment.
